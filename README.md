@@ -20,7 +20,7 @@ A weather application that displays current, daily, and hourly weather informati
 4. Get your API key from [Visual Crossing Weather](https://www.visualcrossing.com/) and add it to your `.env` file:
 
    ```
-   WEATHER_API_KEY=your_actual_api_key_here
+   VITE_WEATHER_API_KEY=your_actual_api_key_here
    ```
 
 5. Run the development server:
@@ -30,4 +30,6 @@ A weather application that displays current, daily, and hourly weather informati
 
 ## Environment Variables
 
-- `WEATHER_API_KEY` - Your Visual Crossing Weather API key (required)
+- `VITE_WEATHER_API_KEY` - Your Visual Crossing Weather API key (required)
+
+**Important:** Never commit your `.env` file to version control. It's already included in `.gitignore`.
