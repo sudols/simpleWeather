@@ -47,17 +47,17 @@ class renderWeatherData {
 				</div>
 			</div>
 
-			<div class="flex mr-5 flex-col">
-				<div class="flex gap-4">
-					<div class="weather-icon"><img src="${weatherIconMap[currentWeather.icon]}" alt="" height="50" width="50" /></div>
-					<div class="temp">${currentWeather.temp}</div>
+			<div class="flex mr-5 flex-col gap-0">
+				<div class="flex gap-4 items-center ">
+					<div class="weather-icon"><img src="${weatherIconMap[currentWeather.icon]}" alt="" height="70" width="70" /></div>
+					<div class="temp text-5xl font-bold">${currentWeather.temp}°C</div>
 
-					<div class="small-text flex flex-col">
-						<div class="high">${currentDayWeather.tempmax}</div>
-						<div class="low">${currentDayWeather.tempmin}</div>
+					<div class="small-text flex flex-col text-text-3">
+						<div class="high">High ${currentDayWeather.tempmax}°C</div>
+						<div class="low">Low ${currentDayWeather.tempmin}°C</div>
 					</div>
 				</div>
-				<div class="self-end text-xl">
+				<div class="self-end text-xl text-text-3">
 					<div class="weather-type">${currentWeather.conditions}</div>
 				</div>
 			</div>
@@ -71,15 +71,17 @@ class renderWeatherData {
 		const dailyWeatherContainer =
 			document.getElementsByClassName('weekday-container')[0];
 
-		dailyWeatherContainer.innerHTML = dailyWeather
+		dailyWeatherContainer.innerHTML = dailyWeather.slice(0, 7)
 			.map(
 				(day) => `
-				<div class="day-name">${this.formatDateTime(day.datetimeEpoch).weekday}</div>
-				<div class="weather-icon">${day.icon}</div>
-				<div class="temp">
-					<div class="high">${day.tempmax}</div>
-					<div class="low">${day.tempmin}</div>
-				</div>
+					<div class="grid grid-cols-[1fr_1fr_1fr] items-center">
+						<div class="day-name font-bold">${this.formatDateTime(day.datetimeEpoch).weekday}</div>
+						<div class="weather-icon justify-self-center"><img src="${weatherIconMap[day.icon]}" alt="" height="50" width="50" /></div>
+						<div class="temp flex gap-2 justify-self-end">
+							<div class="high font-bold text-lg w-8 text-right">${day.tempmax}°</div>
+							<div class="low text-text-3 w-10 text-right">${day.tempmin}°</div>
+						</div>
+					</div>
 			`
 			)
 			.join('');
@@ -89,15 +91,20 @@ class renderWeatherData {
 		const hourlyWeather = this.parsedWeatherData.getHourlyWeather();
 		console.log('Hourly Weather:', hourlyWeather);
 		const hourlyWeatherContainer =
-			document.getElementsByClassName('hourly-info')[0];
+			document.getElementsByClassName('hourly-container')[0];
 
 		hourlyWeatherContainer.innerHTML = hourlyWeather
 			.map(
-				(hour) => `
-					<div class="time">${this.formatDateTime(hour.datetimeEpoch).time}</div>
-					<div class="weather-icon">${hour.icon}</div>
-					<div class="temp">${hour.temp}</div>
-				`
+				(hour) => {
+					if (Date.now() / 1000 < hour.datetimeEpoch) {
+						return `
+						<div class="flex flex-col items-center shrink-0">
+							<div class="time">${this.formatDateTime(hour.datetimeEpoch).time}</div>
+							<div class="weather-icon"><img src="${weatherIconMap[hour.icon]}" alt="" height="50" width="50" /></div>
+							<div class="temp">${hour.temp}</div>
+						</div>`
+					}
+				}
 			)
 			.join('');
 	}

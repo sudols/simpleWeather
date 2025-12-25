@@ -7,10 +7,10 @@
 		<meta name="description" content="Test project for webpack template" />
 	</head>
 
-	<body>
+	<body class="bg-bg">
 		<div id="app" class="bg-bg text-text text-[1rem] pl-5 pr-5">
 			<div
-				class="container h-screen grid grid-cols-[0.7fr_0.3fr] grid-rows-[100px_1fr] gap-0"
+				class="container h-screen grid grid-cols-[0.7fr_0.3fr] grid-rows-[100px_1fr]"
 			>
 				<div
 					class="top col-span-2 flex flex-row justify-end items-center border-b border-gray-700"
@@ -30,13 +30,26 @@
 					</div>
 				</div>
 				<div class="main flex flex-col">
-					<div class="current-info flex justify-between mt-8"></div>
-					<div class="hourly-info flex flex-wrap"></div>
+					<div
+						class="current-info flex justify-between pt-5 pb-5 mt-8 mb-4 rounded-xl"
+					></div>
+					<div
+						class="hourly-info flex flex-col gap-2 p-6 bg-surface rounded-xl"
+					>
+						<div class="hourly-title text-2xl font-bold">Hourly Forecast</div>
+						<div
+							class="hourly-container flex flex-wrap gap-4 p-6 bg-surface rounded-xl justify-between items-center"
+						></div>
+					</div>
 					<div class="other-info"></div>
 				</div>
-				<div class="side flex mt-8">
-					<div class="weekday-title"></div>
-					<div class="weekday-container"></div>
+				<div class="side mt-8">
+					<div class="bg-surface flex flex-col gap-3 rounded-xl p-6">
+						<div class="weekday-title text-2xl font-bold">7-Day Forecast</div>
+						<div
+							class="weekday-container flex flex-col gap-3 divide-y divide-border-strong"
+						></div>
+					</div>
 				</div>
 			</div>
 		</div>
