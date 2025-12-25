@@ -26,6 +26,10 @@ module.exports = {
 	module: {
 		rules: [
 			{
+				test: /\.svg$/,
+				type: 'asset/source',
+			},
+			{
 				test: /\.css$/i,
 				use: [
 					'style-loader',

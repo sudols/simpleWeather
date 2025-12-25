@@ -17,6 +17,7 @@
 	"author": "Test Author",
 	"license": "MIT",
 	"devDependencies": {
+		"@svgr/webpack": "^8.1.0",
 		"@tailwindcss/postcss": "^4.1.11",
 		"autoprefixer": "^10.4.21",
 		"copy-webpack-plugin": "^13.0.0",
@@ -30,5 +31,8 @@
 		"webpack": "^5.99.9",
 		"webpack-cli": "^6.0.1",
 		"webpack-dev-server": "^5.2.2"
+	},
+	"dependencies": {
+		"@bybas/weather-icons": "^2.0.0"
 	}
 }

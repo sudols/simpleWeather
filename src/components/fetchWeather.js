@@ -1,6 +1,5 @@
-async function fetchWeatherData() {
+async function fetchWeatherData(location) {
 	const apiKey = process.env.WEATHER_API_KEY;
-	const location = 'delhi';
 	const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&key=${apiKey}&contentType=json&include=days,hours,current`;
 
 	try {

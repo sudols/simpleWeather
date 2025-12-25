@@ -1,6 +1,9 @@
+import weatherIconMap from './weatherIconMap.js';
+
 class renderWeatherData {
-	constructor(parsedWeatherData) {
+	constructor(parsedWeatherData, location) {
 		this.parsedWeatherData = parsedWeatherData;
+		this.location = location;
 	}
 
 	render() {
@@ -35,19 +38,28 @@ class renderWeatherData {
 		const currentWeatherContainer =
 			document.getElementsByClassName('current-info')[0];
 		currentWeatherContainer.innerHTML = `
-			<div class="city-name">delhi</div>
-			<div class="time-day">
-				<div class="weekday">${this.formatDateTime(currentWeather.datetimeEpoch).weekday
-			}</div>
-				<div class="current-time">${this.formatDateTime(currentWeather.datetimeEpoch).time
-			}</div>
+			<div class="flex flex-col ml-5 gap-1">
+				<div class="city-name text-4xl font-bold">${this.location}</div>
+
+				<div class="time-day flex text-xl text-text-3 gap-3">
+					<div class="weekday">${this.formatDateTime(currentWeather.datetimeEpoch).weekday},</div>
+					<div class="current-time">${this.formatDateTime(currentWeather.datetimeEpoch).time}</div>
+				</div>
 			</div>
-			<div class="weather-icon">${currentWeather.icon}</div>
-			<div class="temp">${currentWeather.temp}</div>
-			<div class="small-text">
-				<div class="high">${currentDayWeather.tempmax}</div>
-				<div class="low">${currentDayWeather.tempmin}</div>
-				<div class="weather-type">${currentWeather.conditions}</div>
+
+			<div class="flex mr-5 flex-col">
+				<div class="flex gap-4">
+					<div class="weather-icon"><img src="${weatherIconMap[currentWeather.icon]}" alt="" height="50" width="50" /></div>
+					<div class="temp">${currentWeather.temp}</div>
+
+					<div class="small-text flex flex-col">
+						<div class="high">${currentDayWeather.tempmax}</div>
+						<div class="low">${currentDayWeather.tempmin}</div>
+					</div>
+				</div>
+				<div class="self-end text-xl">
+					<div class="weather-type">${currentWeather.conditions}</div>
+				</div>
 			</div>
 		`;
 	}

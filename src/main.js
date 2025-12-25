@@ -4,10 +4,23 @@ import { fetchWeatherData, parseWeatherData } from './components/fetchWeather.js
 
 
 
-async function init() {
-	const parsedWeatherData = new parseWeatherData(await fetchWeatherData());
-	const renderHtml = new renderWeatherData(parsedWeatherData);
-	renderHtml.render();
+function init() {
+	// const location = document.getElementById('search')
+
+	// location.addEventListener('keypress', (e) => {
+	// 	if (e.key === 'Enter') {
+	const location = { value: 'berlin' }
+	fetchWeatherData(location.value)
+		.then((weatherData) => {
+			const parsedWeatherData = new parseWeatherData(weatherData);
+			const renderHtml = new renderWeatherData(parsedWeatherData, location.value);
+			renderHtml.render();
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+	// }
+	// })
 }
 
 init();

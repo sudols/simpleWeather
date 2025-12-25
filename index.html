@@ -8,23 +8,33 @@
 	</head>
 
 	<body>
-		<div id="app">
-			<div class="container">
-				<div class="top">
-					<div class="logo">
-						<img src="assets/logo.jpg" alt="logo" height="50" width="50" />
-						<div>Weather Wise</div>
+		<div id="app" class="bg-bg text-text text-[1rem] pl-5 pr-5">
+			<div
+				class="container h-screen grid grid-cols-[0.7fr_0.3fr] grid-rows-[100px_1fr] gap-0"
+			>
+				<div
+					class="top col-span-2 flex flex-row justify-end items-center border-b border-gray-700"
+				>
+					<div class="logo flex-1 flex gap-5">
+						<img src="assets/logo.svg" alt="logo" height="50" width="50" />
+						<span class="font-bold text-2xl text-text-3">Weather Wise</span>
 					</div>
-					<div class="search-bar">
-						<input type="text" />
+					<div class="search-bar flex-1 flex justify-end">
+						<input
+							type="search"
+							name="search"
+							id="search"
+							placeholder="Search"
+							class="w-[200px] bg-surface p-2 rounded-md focus:outline-none focus:bg-surface-2 transition mr-2"
+						/>
 					</div>
 				</div>
-				<div class="main">
-					<div class="current-info"></div>
-					<div class="hourly-info"></div>
+				<div class="main flex flex-col">
+					<div class="current-info flex justify-between mt-8"></div>
+					<div class="hourly-info flex flex-wrap"></div>
 					<div class="other-info"></div>
 				</div>
-				<div class="side">
+				<div class="side flex mt-8">
 					<div class="weekday-title"></div>
 					<div class="weekday-container"></div>
 				</div>
