@@ -10,6 +10,7 @@ class renderWeatherData {
 		this.renderCurrentWeather();
 		this.renderDailyWeather();
 		this.renderHourlyWeather();
+		this.renderCurrentOtherInfo();
 	}
 
 	formatDateTime(epochTime) {
@@ -108,6 +109,28 @@ class renderWeatherData {
 			)
 			.join('');
 	}
+
+	renderCurrentOtherInfo() {
+		const currentWeather = this.parsedWeatherData.getCurrentWeather();
+		const currentWeatherContainer = document.getElementsByClassName('other-info')[0];
+		/*
+		feelslike: -8.9
+		humidity: 81.7
+		pressure: 1037
+		uvindex: 2
+		windspeed: 10.8
+		*/
+		currentWeatherContainer.innerHTML = `
+			<div class="flex flex-col flex-wrap  gap-1">
+				<div class="feelslike">Feels like ${currentWeather.feelslike}°C</div>
+				<div class="humidity">Humidity ${currentWeather.humidity}%</div>
+				<div class="pressure">Pressure ${currentWeather.pressure} hPa</div>
+				<div class="uvindex">UV Index ${currentWeather.uvindex}</div>
+				<div class="windspeed">Wind Speed ${currentWeather.windspeed} km/h</div>
+			</div>
+		`;
+	}
+
 }
 
 export default renderWeatherData;
