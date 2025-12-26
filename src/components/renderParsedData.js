@@ -40,7 +40,7 @@ class renderWeatherData {
 			document.getElementsByClassName('current-info')[0];
 		currentWeatherContainer.innerHTML = `
 			<div class="flex flex-col ml-5 gap-1">
-				<div class="city-name text-4xl font-bold">${this.location}</div>
+				<div class="city-name text-4xl font-bold">${this.location.charAt(0).toUpperCase() + this.location.slice(1)}</div>
 
 				<div class="time-day flex text-xl text-text-3 gap-3">
 					<div class="weekday">${this.formatDateTime(currentWeather.datetimeEpoch).weekday},</div>

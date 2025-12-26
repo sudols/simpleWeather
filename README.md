@@ -1,5 +1,7 @@
 # Weather App
 
+![Weather App Screenshot](./showcase-image.png)
+
 A weather application that displays current, daily, and hourly weather information.
 
 ## Setup

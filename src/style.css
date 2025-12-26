@@ -72,7 +72,7 @@ body {
 		.hourly-container.expanded {
 			max-height: 20rem;
 		}
-		.asdf {
+		.toggle-arrow {
 			transform: rotate(90deg);
 		}
 		.hourly-arrow {
