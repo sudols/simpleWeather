@@ -1,5 +1,7 @@
 node_modules/
-dist/
 .env
 *.log
 .DS_Store
+dist/bundle.js
+dist/bundle.js.map
+
