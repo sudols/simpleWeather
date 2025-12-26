@@ -31,7 +31,7 @@ class parseWeatherData {
 	}
 
 	getHourlyWeather() {
-		return this.weatherData.days[0].hours;
+		return [...this.weatherData.days[0].hours, ...this.weatherData.days[1].hours];
 	}
 
 }

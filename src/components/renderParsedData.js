@@ -93,21 +93,30 @@ class renderWeatherData {
 		console.log('Hourly Weather:', hourlyWeather);
 		const hourlyWeatherContainer =
 			document.getElementsByClassName('hourly-container')[0];
+		const hourlyWeatherFuture = hourlyWeather.filter((hour) => hour.datetimeEpoch > Date.now() / 1000).slice(0, 12);
 
-		hourlyWeatherContainer.innerHTML = hourlyWeather
+		hourlyWeatherContainer.innerHTML = hourlyWeatherFuture
 			.map(
 				(hour) => {
-					if (Date.now() / 1000 < hour.datetimeEpoch) {
-						return `
-						<div class="flex flex-col items-center shrink-0">
-							<div class="time">${this.formatDateTime(hour.datetimeEpoch).time}</div>
+					return `
+						<div class="flex flex-col items-center shrink-0 pl-6 pr-6 mt-6 mb-6">
+							<div class="time font-bold text-text-3">${this.formatDateTime(hour.datetimeEpoch).time}</div>
 							<div class="weather-icon"><img src="${weatherIconMap[hour.icon]}" alt="" height="50" width="50" /></div>
-							<div class="temp">${hour.temp}</div>
+							<div class="temp text-xl font-bold">${hour.temp}°</div>
 						</div>`
-					}
 				}
 			)
 			.join('');
+	}
+
+	getUvIndexIcon(uvValue) {
+		const key = Math.max(0, Math.min(12, Math.round(uvValue)));
+		return weatherIconMap['uvindex'][key];
+	}
+
+	getWindSpeedIcon(windSpeed) {
+		const key = Math.max(1, Math.min(12, Math.round(windSpeed)));
+		return weatherIconMap['windspeed'][key];
 	}
 
 	renderCurrentOtherInfo() {
@@ -121,12 +130,42 @@ class renderWeatherData {
 		windspeed: 10.8
 		*/
 		currentWeatherContainer.innerHTML = `
-			<div class="flex flex-col flex-wrap  gap-1">
-				<div class="feelslike">Feels like ${currentWeather.feelslike}°C</div>
-				<div class="humidity">Humidity ${currentWeather.humidity}%</div>
-				<div class="pressure">Pressure ${currentWeather.pressure} hPa</div>
-				<div class="uvindex">UV Index ${currentWeather.uvindex}</div>
-				<div class="windspeed">Wind Speed ${currentWeather.windspeed} km/h</div>
+			<div class="grid grid-cols-3  gap-6">
+				<div class="flex flex-col gap-2  items-center bg-surface p-4 rounded-xl">
+					<div class="flex gap-2 items-center"> 
+						<img src="${weatherIconMap['feelslike']}" alt="" height="50" width="50" />
+						<div class="text-text-3 text-xl"> Feels like </div>
+					</div>
+					<div class="font-bold text-3xl"> ${currentWeather.feelslike}°C</div>
+				</div>
+				<div class="flex flex-col gap-2  items-center bg-surface p-4 rounded-xl">
+					<div class="flex gap-2 items-center"> 
+						<img src="${weatherIconMap['humidity']}" alt="" height="50" width="50" />
+						<div class="text-text-3 text-xl"> Humidity </div>
+					</div>
+					<div class="font-bold text-3xl"> ${currentWeather.humidity}%</div>
+				</div>
+				<div class="flex flex-col gap-2  items-center bg-surface p-4 rounded-xl">
+					<div class="flex gap-2 items-center"> 
+						<img src="${weatherIconMap['pressure']}" alt="" height="50" width="50" />
+						<div class="text-text-3 text-xl"> Pressure </div>
+					</div>
+					<div class="font-bold text-3xl"> ${currentWeather.pressure} hPa</div>
+				</div>
+				<div class="flex flex-col gap-2  items-center bg-surface p-4 rounded-xl">
+					<div> 
+						<img src="${this.getUvIndexIcon(currentWeather.uvindex)}" alt="" height="50" width="50" />
+						<div class="text-text-3 text-xl"> UV Index </div>
+					</div>
+					<div class="font-bold text-3xl"> ${currentWeather.uvindex}</div>
+				</div>
+				<div class="flex flex-col gap-2  items-center bg-surface p-4 rounded-xl">
+					<div> 
+						<img src="${this.getWindSpeedIcon(currentWeather.windspeed)}" alt="" height="50" width="50" />
+						<div class="text-text-3 text-xl"> Wind Speed </div>
+					</div>
+					<div class="font-bold text-3xl"> ${currentWeather.windspeed} km/h</div>
+				</div>
 			</div>
 		`;
 	}

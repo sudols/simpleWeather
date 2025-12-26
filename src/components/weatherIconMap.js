@@ -31,7 +31,7 @@ const weatherIconMap = {
 
 	// UV Index (multiple variations: default + 1-11)
 	'uvindex': {
-		'default': require('@bybas/weather-icons/production/fill/all/uv-index.svg'),
+		0: require('@bybas/weather-icons/production/fill/all/uv-index.svg'),
 		1: require('@bybas/weather-icons/production/fill/all/uv-index-1.svg'),
 		2: require('@bybas/weather-icons/production/fill/all/uv-index-2.svg'),
 		3: require('@bybas/weather-icons/production/fill/all/uv-index-3.svg'),
@@ -47,7 +47,6 @@ const weatherIconMap = {
 
 	// Wind Speed - Beaufort Scale (multiple variations: default + 0-12)
 	'windspeed': {
-		'default': require('@bybas/weather-icons/production/fill/all/wind.svg'),
 		0: require('@bybas/weather-icons/production/fill/all/wind-beaufort-0.svg'),
 		1: require('@bybas/weather-icons/production/fill/all/wind-beaufort-1.svg'),
 		2: require('@bybas/weather-icons/production/fill/all/wind-beaufort-2.svg'),

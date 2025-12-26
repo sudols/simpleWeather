@@ -63,6 +63,21 @@ body {
 
 	.main {
 		grid-area: main;
+
+		.hourly-container {
+			max-height: 10rem;
+			overflow: hidden;
+			transition: max-height 0.3s ease;
+		}
+		.hourly-container.expanded {
+			max-height: 20rem;
+		}
+		.asdf {
+			transform: rotate(90deg);
+		}
+		.hourly-arrow {
+			transition: transform 0.3s ease;
+		}
 	}
 
 	.side {

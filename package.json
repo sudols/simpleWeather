@@ -33,6 +33,7 @@
 		"webpack-dev-server": "^5.2.2"
 	},
 	"dependencies": {
-		"@bybas/weather-icons": "^2.0.0"
+		"@bybas/weather-icons": "^2.0.0",
+		"@tabler/icons-webfont": "^3.36.0"
 	}
 }
